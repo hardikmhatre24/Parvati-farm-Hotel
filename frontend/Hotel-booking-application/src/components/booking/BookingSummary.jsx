@@ -40,7 +40,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 		const orderId = orderResponse.data
 
 		const options = {
-			key: "rzp_live_T6wgbnKAC3mE4t",
+			key: "rzp_live_T76TroDSDb0mcZ",
 
 			amount: payment * 100,
 
