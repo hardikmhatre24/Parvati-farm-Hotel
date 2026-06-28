@@ -1,7 +1,7 @@
 // import axios from "axios"
 
 // export const api = axios.create({
-// 	baseURL: "http://localhost:8080"
+// 
 // })
 
 // export const getHeader = () => {
@@ -222,7 +222,7 @@ import axios from "axios"
 
 /* ================= AXIOS INSTANCE ================= */
 export const api = axios.create({
-	baseURL: "http://localhost:8080"
+	baseURL: "https://parvati-farm-hotel-4.onrender.com"
 })
 
 /* ================= AUTH HEADER ================= */

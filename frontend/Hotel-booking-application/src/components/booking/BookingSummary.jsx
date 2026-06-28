@@ -27,15 +27,15 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 
 	const token = localStorage.getItem("token")
 
-	const orderResponse = await axios.post(
-		`http://localhost:8080/payments/create-order?amount=${payment}`,
-		{},
-		{
-			headers: {
-				Authorization: `Bearer ${token}`
-			}
+	const orderResponse = await api.post(
+	`/payments/create-order?amount=${payment}`,
+	{},
+	{
+		headers: {
+			Authorization: `Bearer ${token}`
 		}
-	)
+	}
+);
 
 		const orderId = orderResponse.data
 
