@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { NavLink, Link } from "react-router-dom"
 import Logout from "../auth/Logout"
-import "./Navbar.css";
+import "./navbar.css";
 
 const NavBar = () => {
 	const [showAccount, setShowAccount] = useState(false)
