@@ -1,0 +1,36 @@
+
+/* =========================
+   FORCE TABLE VISIBILITY (ULTIMATE FIX)
+========================= */
+
+table,
+.table {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+table * {
+  color: #111827 !important;
+}
+
+/* HEADER FIX */
+table thead th {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #a94d7b, #d17ca5) !important;
+}
+
+/* BODY FIX */
+table tbody td {
+  color: #111827 !important;
+  background: #ffffff !important;
+}
+
+/* OVERRIDE BOOTSTRAP TEXT CENTER ISSUE */
+.text-center {
+  color: #111827 !important;
+}
+
+/* SAFETY RESET */
+body {
+  color: #111827 !important;
+}

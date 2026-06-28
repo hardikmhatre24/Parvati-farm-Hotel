@@ -1,11 +1,13 @@
-body {
+  body {
   min-height: 100vh;
   padding-bottom: 50px;
+  background: linear-gradient(135deg, #fff1f2, #f8fafc);
+	color: #111827;
 }
 
 .card {
   opacity: 0.9;
-}
+} 
 
 /* Navigation bar definitions */
 .navbar {
@@ -92,7 +94,7 @@ body {
 
 
 .parallax {
-  background-image: url("./assets/images/parrall.jpg");
+  background-image: url("./assets/images/parvatifarm.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -211,7 +213,7 @@ h2 {
 
 /* The header banner */
 .header-banner {
-  background-image: url("./assets/images/services-1.jpg");
+  background-image: url("./assets/images/parvatifarm.png");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -244,3 +246,109 @@ h2 {
   height: 60px;
   text-align: center;
 }
+
+.mb-0 {
+  color:white;
+}
+
+/* ================= PROFILE PAGE UI REDESIGN ================= */
+
+.container .card.p-5.mt-5 {
+	background: linear-gradient(135deg, #ffffff, #fff7fb);
+	border: none;
+	border-radius: 25px;
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+	color: #a94d7b;
+	font-weight: 700;
+	font-size: 2rem;
+	margin-bottom: 25px;
+}
+
+.card.mb-3.shadow {
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+	padding: 20px;
+}
+
+.rounded-circle {
+	border: 5px solid #a94d7b;
+	box-shadow: 0 10px 25px rgba(169, 77, 123, 0.3);
+}
+
+.form-group label {
+	color: #a94d7b !important;
+	font-weight: 700;
+}
+
+.card-text {
+	font-size: 16px;
+	color: #374151;
+	font-weight: 500;
+}
+
+.list-unstyled li {
+	display: inline-block;
+	background: linear-gradient(135deg, #a94d7b, #d17ca5);
+	color: white;
+	padding: 6px 14px;
+	border-radius: 20px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.table {
+	background: white;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.table thead {
+	background: linear-gradient(135deg, #a94d7b, #d17ca5);
+	color: white;
+}
+
+.table thead th {
+	color: white !important;
+	border: none !important;
+	padding: 15px;
+}
+
+.table tbody td {
+	padding: 15px;
+	vertical-align: middle;
+}
+
+.table tbody tr:hover {
+	background-color: rgba(169, 77, 123, 0.08);
+}
+
+.text-success {
+	background: #dcfce7;
+	color: #15803d !important;
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 700;
+	display: inline-block;
+}
+
+.btn-danger {
+	background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+	border: none !important;
+	border-radius: 12px;
+	padding: 10px 24px;
+	font-weight: 600;
+}
+
+.btn-danger:hover {
+	transform: translateY(-2px);
+}
+
+hr {
+	border-top: 1px solid rgba(169, 77, 123, 0.2);
+}
+  

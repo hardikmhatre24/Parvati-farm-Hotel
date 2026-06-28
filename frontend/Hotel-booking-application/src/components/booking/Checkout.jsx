@@ -63,7 +63,7 @@ const Checkout = () => {
 										</tr>
 										<tr>
 											<th>Price per night:</th>
-											<td>${roomInfo.roomPrice}</td>
+											<td>₹{roomInfo.roomPrice}</td>
 										</tr>
 										<tr>
 											<th>Room Service:</th>
@@ -78,18 +78,18 @@ const Checkout = () => {
 													<li>
 														<FaUtensils /> Breakfast
 													</li>
-													<li>
+													{/* <li>
 														<FaWineGlassAlt /> Mini bar refreshment
-													</li>
-													<li>
+													</li> */}
+													{/* <li>
 														<FaCar /> Car Service
-													</li>
+													</li> */}
 													<li>
 														<FaParking /> Parking Space
 													</li>
-													<li>
+													{/* <li>
 														<FaTshirt /> Laundry
-													</li>
+													</li> */}
 												</ul>
 											</td>
 										</tr>

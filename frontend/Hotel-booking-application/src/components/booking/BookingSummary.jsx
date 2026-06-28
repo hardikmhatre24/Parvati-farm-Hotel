@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import moment from "moment"
 import Button from "react-bootstrap/Button"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 	const checkInDate = moment(booking.checkInDate)
@@ -11,14 +12,86 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false)
 	const navigate = useNavigate()
 
-	const handleConfirmBooking = () => {
+	// const handleConfirmBooking = () => {
+	// 	setIsProcessingPayment(true)
+	// 	setTimeout(() => {
+	// 		setIsProcessingPayment(false)
+	// 		setIsBookingConfirmed(true)
+	// 		onConfirm()
+	// 	}, 3000)
+	// }
+
+	const handleConfirmBooking = async () => {
+	try {
 		setIsProcessingPayment(true)
-		setTimeout(() => {
-			setIsProcessingPayment(false)
-			setIsBookingConfirmed(true)
-			onConfirm()
-		}, 3000)
+
+	const token = localStorage.getItem("token")
+
+	const orderResponse = await axios.post(
+		`http://localhost:8080/payments/create-order?amount=${payment}`,
+		{},
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		}
+	)
+
+		const orderId = orderResponse.data
+
+		const options = {
+			key: "rzp_live_T6wgbnKAC3mE4t",
+
+			amount: payment * 100,
+
+			currency: "INR",
+
+			name: "Hotel Booking System",
+
+			description: "Room Reservation Payment",
+
+			order_id: orderId,
+
+			prefill: {
+				name: booking.guestFullName,
+				email: booking.guestEmail
+			},
+
+			handler: async function (response) {
+				console.log("Payment Success", response)
+
+				try {
+					await onConfirm()
+
+					setIsBookingConfirmed(true)
+				} catch (error) {
+					console.error(error)
+					alert("Booking creation failed")
+				}
+			},
+
+			modal: {
+				ondismiss: function () {
+					setIsProcessingPayment(false)
+				}
+			},
+
+			theme: {
+				color: "#0d6efd"
+			}
+		}
+
+		const razorpay = new window.Razorpay(options)
+
+		razorpay.open()
+	} catch (error) {
+		console.error(error)
+
+		setIsProcessingPayment(false)
+
+		alert("Unable to initiate payment")
 	}
+}
 
 	useEffect(() => {
 		if (isBookingConfirmed) {
@@ -60,7 +133,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 				{payment > 0 ? (
 					<>
 						<p>
-							Total payment: <strong>${payment}</strong>
+							Total payment: <strong>₹{payment}</strong>
 						</p>
 
 						{isFormValid && !isBookingConfirmed ? (
@@ -74,7 +147,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 										Booking Confirmed, redirecting to payment...
 									</>
 								) : (
-									"Confirm Booking & proceed to payment"
+									"Proceed to payment"
 								)}
 							</Button>
 						) : isBookingConfirmed ? (

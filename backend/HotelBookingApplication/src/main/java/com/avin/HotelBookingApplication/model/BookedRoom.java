@@ -47,6 +47,15 @@ public class BookedRoom {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @Column(name = "razorpay_order_id")
+    private String razorpayOrderId;
+
+    @Column(name = "payment_status")
+    private String paymentStatus;
+
+    @Column(name = "razorpay_payment_id")
+    private String razorpayPaymentId;
+
     public void calculateTotalNumberOfGuest(){
         this.totalNumOfGuest = this.NumOfAdults + NumOfChildren;
     }

@@ -1,0 +1,65 @@
+
+/* =========================
+   ADMIN PAGE ONLY STYLING
+========================= */
+
+/* ONLY ADMIN SECTION TARGET */
+section.container.mt-5 {
+  max-width: 700px;
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+
+  padding: 30px;
+  margin-top: 40px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TITLE ONLY INSIDE ADMIN */
+section.container.mt-5 h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* HR ONLY INSIDE ADMIN */
+section.container.mt-5 hr {
+  border: none;
+  height: 1px;
+  background: rgba(169, 77, 123, 0.2);
+  margin: 20px 0;
+}
+
+/* LINKS ONLY ADMIN */
+section.container.mt-5 a {
+  display: inline-block;
+
+  margin: 10px 0;
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  color: #a94d7b;
+
+  background: rgba(169, 77, 123, 0.08);
+
+  transition: 0.3s ease;
+}
+
+/* HOVER */
+section.container.mt-5 a:hover {
+  background: linear-gradient(135deg, #a94d7b, #d17ca5);
+  color: white;
+
+  transform: translateX(5px);
+  box-shadow: 0 10px 25px rgba(169, 77, 123, 0.25);
+}

@@ -5,6 +5,7 @@ import RoomFilter from "../common/RoomFilter"
 import RoomPaginator from "../common/RoomPaginator"
 import { FaEdit, FaEye, FaPlus, FaTrashAlt } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import "./existroom.css";
 
 const ExistingRooms = () => {
 	const [rooms, setRooms] = useState([{ id: "", roomType: "", roomPrice: "" }])
@@ -75,7 +76,7 @@ const ExistingRooms = () => {
 
 	return (
 		<>
-			<div className="container col-md-8 col-lg-6">
+			<div className="container col-md-8 col-lg-62">
 				{successMessage && <p className="alert alert-success mt-5">{successMessage}</p>}
 
 				{errorMessage && <p className="alert alert-danger mt-5">{errorMessage}</p>}

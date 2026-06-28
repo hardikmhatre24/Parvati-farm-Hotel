@@ -2,6 +2,7 @@ package com.avin.HotelBookingApplication.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avin.HotelBookingApplication.exception.InvalidBookingRequestException;
@@ -9,6 +10,8 @@ import com.avin.HotelBookingApplication.exception.ResourceNotFoundException;
 import com.avin.HotelBookingApplication.model.BookedRoom;
 import com.avin.HotelBookingApplication.model.Room;
 import com.avin.HotelBookingApplication.repository.BookingRepository;
+
+import com.avin.HotelBookingApplication.model.PaymentOrderResponse;
 
 import java.util.List;
 
@@ -19,6 +22,9 @@ import java.util.List;
 public class BookingService implements IBookingService {
     private final BookingRepository bookingRepository;
     private final IRoomService roomService;
+
+    @Autowired
+    private final RazorpayService razorpayService;
 
 
     @Override
@@ -53,6 +59,7 @@ public class BookingService implements IBookingService {
         if (roomIsAvailable){
             room.addBooking(bookingRequest);
             bookingRepository.save(bookingRequest);
+
         }else{
             throw  new InvalidBookingRequestException("Sorry, This room is not available for the selected dates;");
         }
@@ -65,6 +72,7 @@ public class BookingService implements IBookingService {
                 .orElseThrow(() -> new ResourceNotFoundException("No booking found with booking code :"+confirmationCode));
 
     }
+
 
 
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {

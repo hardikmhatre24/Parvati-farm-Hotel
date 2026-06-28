@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { NavLink, Link } from "react-router-dom"
 import Logout from "../auth/Logout"
-
+import "./Navbar.css";
 
 const NavBar = () => {
 	const [showAccount, setShowAccount] = useState(false)
@@ -17,7 +17,7 @@ const NavBar = () => {
 		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
 			<div className="container-fluid">
 				<Link to={"/"} className="navbar-brand">
-					<span className="hotel-color">Luminous Haven Hotel</span>
+					<span className="hotel-color">PARVATI FARM HOUSE</span>
 				</Link>
 
 				<button

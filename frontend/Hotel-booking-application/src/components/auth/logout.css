@@ -1,0 +1,22 @@
+.custom-dropdown-item {
+	padding: 12px 18px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	border-radius: 8px;
+}
+
+.custom-dropdown-item:hover {
+	background-color: rgba(169, 77, 123, 0.1);
+	color: rgb(169, 77, 123);
+	transform: translateX(4px);
+}
+
+.logout-btn {
+	color: #dc3545;
+	font-weight: 600;
+}
+
+.logout-btn:hover {
+	background-color: rgba(220, 53, 69, 0.1);
+	color: #dc3545;
+}

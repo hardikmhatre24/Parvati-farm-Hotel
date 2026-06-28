@@ -19,7 +19,7 @@ const HotelService = () => {
 
 				<Row className="mt-4">
 					<h4 className="text-center">
-						Services at <span className="hotel-color"> Luminous Haven - </span>Hotel
+						Services at <span className="hotel-color"> PARAVATI FARM HOUSE - </span>
 						<span className="gap-2">
 							<FaClock className="ml-5" /> 24-Hour Front Desk
 						</span>
@@ -48,7 +48,7 @@ const HotelService = () => {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col>
+					{/* <Col>
 						<Card>
 							<Card.Body>
 								<Card.Title className="hotel-color">
@@ -57,8 +57,8 @@ const HotelService = () => {
 								<Card.Text>Keep your clothes clean and fresh with our laundry service.</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>
-					<Col>
+					</Col> */}
+					{/* <Col>
 						<Card>
 							<Card.Body>
 								<Card.Title className="hotel-color">
@@ -67,7 +67,7 @@ const HotelService = () => {
 								<Card.Text>Enjoy a refreshing drink or snack from our in-room mini-bar.</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>
+					</Col> */}
 					<Col>
 						<Card>
 							<Card.Body>

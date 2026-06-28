@@ -1,6 +1,5 @@
 package com.avin.HotelBookingApplication.security;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,27 +16,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-// import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-// import org.springframework.web.multipart.*;
-// import org.springframework.web.multipart.commons.
-
 import com.avin.HotelBookingApplication.security.jwt.AuthTokenFilter;
 import com.avin.HotelBookingApplication.security.jwt.JwtAuthEntryPoint;
 import com.avin.HotelBookingApplication.security.user.HotelUserDetailsService;
 
-
-
 @Configuration
 @RequiredArgsConstructor
-@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
+
     private final HotelUserDetailsService userDetailsService;
     private final JwtAuthEntryPoint jwtAuthEntryPoint;
 
     @Bean
-    public AuthTokenFilter authenticationTokenFilter(){
+    public AuthTokenFilter authenticationTokenFilter() {
         return new AuthTokenFilter();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -45,7 +40,7 @@ public class WebSecurityConfig {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        var authProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
@@ -58,27 +53,31 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer :: disable)
-                .exceptionHandling(
-                        exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
+
+        http.csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtAuthEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/rooms/**","/bookings/**")
-                        .permitAll().requestMatchers("/roles/**").hasRole("ADMIN")
-                        .anyRequest().authenticated());
+
+                        /* PUBLIC */
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/rooms/all-rooms").permitAll()
+                        .requestMatchers("/rooms/room/**").permitAll()
+                        .requestMatchers("/rooms/available-rooms").permitAll()
+                        .requestMatchers("/payments/**").permitAll()
+
+                        /* ADMIN ONLY */
+                        .requestMatchers("/rooms/add/**").hasRole("ADMIN")
+                        .requestMatchers("/rooms/update/**").hasRole("ADMIN")
+                        .requestMatchers("/rooms/delete/**").hasRole("ADMIN")
+                        .requestMatchers("/bookings/all-bookings").hasRole("ADMIN")
+
+                        .anyRequest().authenticated()
+                );
+
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
-
-    // @Bean(name = "multipartResolver")
-    // public CommonsMultipartResolver multipartResolver() {
-    //     CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-    //     return multipartResolver;
-    // }
-
-
-
-
-
 }
