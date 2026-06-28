@@ -25,6 +25,10 @@ public class UserService implements IUserService {
 
     @Override
     public User registerUser(User user) {
+        System.out.println("=== ROLES IN DB ===");
+        roleRepository.findAll().forEach(r ->
+                System.out.println(r.getId() + " -> [" + r.getName() + "]")
+        );
 
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new UserAlreadyExistsException("User already exists: " + user.getEmail());
@@ -34,10 +38,14 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // ✅ Role fetch safely
-        Role userRole = roleRepository.findByName("ROLE_USER")
+        Role userRole = roleRepository.findAll()
+                .stream()
+                .filter(r -> r.getName() != null &&
+                        r.getName().trim().equalsIgnoreCase("ROLE_USER"))
+                .findFirst()
                 .orElseThrow(() -> new RuntimeException("ROLE_USER not found in DB"));
 
-        user.setRoles(Collections.singletonList(userRole));
+        user.getRoles().add(userRole);
 
         return userRepository.save(user);
     }

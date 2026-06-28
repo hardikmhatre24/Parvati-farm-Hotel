@@ -29,7 +29,7 @@ public class HotelBookingApplication {
 			System.out.println("🔥 INIT RUNNER");
 
 			// ROLE INIT (SAFE)
-			Role adminRole = roleRepository.findByName("ROLE_ADMIN")
+			Role adminRole = roleRepository.findByRoleName("ROLE_ADMIN")
 					.orElseGet(() -> {
 						Role r = new Role();
 						r.setName("ROLE_ADMIN");
