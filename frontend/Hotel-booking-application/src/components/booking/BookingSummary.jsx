@@ -12,14 +12,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false)
 	const navigate = useNavigate()
 
-	// const handleConfirmBooking = () => {
-	// 	setIsProcessingPayment(true)
-	// 	setTimeout(() => {
-	// 		setIsProcessingPayment(false)
-	// 		setIsBookingConfirmed(true)
-	// 		onConfirm()
-	// 	}, 3000)
-	// }
+
 
 	const handleConfirmBooking = async () => {
 	try {
@@ -27,17 +20,18 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 
 	const token = localStorage.getItem("token")
 
-	const orderResponse = await api.post(
-	`/payments/create-order?amount=${payment}`,
-	{},
-	{
-		headers: {
-			Authorization: `Bearer ${token}`
-		}
-	}
-);
+const orderResponse = await axios.post(
+  `https://parvati-farm-hotel-4.onrender.com/payments/create-order?amount=${payment}`,
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
-		const orderId = orderResponse.data
+
+		const orderId = orderResponse.data.id
 
 		const options = {
 			key: "rzp_live_T76TroDSDb0mcZ",
