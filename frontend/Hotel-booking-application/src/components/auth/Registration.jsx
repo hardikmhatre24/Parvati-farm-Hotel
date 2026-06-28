@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { registerUser } from "../utils/ApiFunctions"
 import { Link } from "react-router-dom"
-import "./regi.css"
+
 
 const Registration = () => {
 	const [registration, setRegistration] = useState({
