@@ -19,6 +19,7 @@ import Registration from "./components/auth/Registration"
 import Profile from "./components/auth/Profile"
 import { AuthProvider } from "./components/auth/AuthProvider"
 import RequireAuth from "./components/auth/RequireAuth"
+import AboutUs from "./components/common/AboutUs"
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               }
             />
             <Route path="/browse-all-rooms" element={<RoomListing />} />
+            <Route path="/about" element={<AboutUs />} />
 
             <Route path="/admin" element={<Admin />} />
             <Route path="/booking-success" element={<BookingSuccess />} />

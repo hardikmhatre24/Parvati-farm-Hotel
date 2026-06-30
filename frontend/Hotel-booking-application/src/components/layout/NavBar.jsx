@@ -33,20 +33,34 @@ const NavBar = () => {
 
 				<div className="collapse navbar-collapse" id="navbarScroll">
 					<ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-						<li className="nav-item">
-							<NavLink className="nav-link" aria-current="page" to={"/browse-all-rooms"}>
-								Browse all rooms
-							</NavLink>
-						</li>
 
-						{isLoggedIn && userRole === "ROLE_ADMIN" && (
-							<li className="nav-item">
-								<NavLink className="nav-link" aria-current="page" to={"/admin"}>
-									Admin
-								</NavLink>
-							</li>
-						)}
-					</ul>
+	<li className="nav-item">
+		<NavLink className="nav-link" to={"/"}>
+			Home
+		</NavLink>
+	</li>
+
+	<li className="nav-item">
+		<NavLink className="nav-link" to={"/browse-all-rooms"}>
+			Browse all Rooms
+		</NavLink>
+	</li>
+
+	<li className="nav-item">
+		<NavLink className="nav-link" to={"/about"}>
+			About Us
+		</NavLink>
+	</li>
+
+	{isLoggedIn && userRole === "ROLE_ADMIN" && (
+		<li className="nav-item">
+			<NavLink className="nav-link" to={"/admin"}>
+				Admin
+			</NavLink>
+		</li>
+	)}
+
+</ul>
 
 					<ul className="d-flex navbar-nav">
 						<li className="nav-item">
